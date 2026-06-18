@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Registration | CampusEvents</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo" id="nav-logo">
+        <div class="logo-icon">🎓</div>
+        <span>CampusEvents</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" id="nav-link-home">Home</a></li>
+        <li><a href="admin-login.html" id="nav-link-login">Admin Login</a></li>
+        <li><a href="admin-dashboard.html" class="nav-btn" id="nav-link-dashboard">Dashboard</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Main Registration Form Container -->
+  <main class="main-container">
+    <div class="auth-card" style="max-width: 550px;">
+      <h1 class="auth-title">Event Registration</h1>
+      <p class="auth-subtitle" id="registration-subtitle">Register to secure your ticket</p>
+
+      <!-- Alert Message Container -->
+      <div id="alert-container"></div>
+
+      <form id="register-form">
+        <!-- Hidden input for Event ID -->
+        <input type="hidden" id="event-id" name="eventId">
+
+        <!-- Name field -->
+        <div class="form-group">
+          <label for="register-name" class="form-label">Full Name</label>
+          <input type="text" id="register-name" class="form-control" placeholder="Enter your full name" required>
+        </div>
+
+        <!-- Email field -->
+        <div class="form-group">
+          <label for="register-email" class="form-label">Email Address</label>
+          <input type="email" id="register-email" class="form-control" placeholder="Enter your email address" required>
+        </div>
+
+        <!-- Phone field -->
+        <div class="form-group">
+          <label for="register-phone" class="form-label">Phone Number</label>
+          <input type="tel" id="register-phone" class="form-control" placeholder="Enter your 10-digit phone number" required>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn" style="margin-top: 10px;" id="btn-submit-registration">Submit Registration</button>
+      </form>
+
+      <div id="success-actions" style="display: none; text-align: center; margin-top: 20px;">
+        <a href="index.html" class="btn btn-secondary" style="width: auto; display: inline-block;">Back to Homepage</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="main-container" style="min-height: auto; margin: 0 auto; padding: 0;">
+      <p>&copy; 2026 Campus Events Management Portal. Built as a College Mini Project.</p>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/register.js"></script>
+</body>
+</html>

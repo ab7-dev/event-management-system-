@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Details | CampusEvents</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo" id="nav-logo">
+        <div class="logo-icon">🎓</div>
+        <span>CampusEvents</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" id="nav-link-home">Home</a></li>
+        <li><a href="admin-login.html" id="nav-link-login">Admin Login</a></li>
+        <li><a href="admin-dashboard.html" class="nav-btn" id="nav-link-dashboard">Dashboard</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Event Details Content -->
+  <main class="main-container">
+    <a href="index.html" style="text-decoration: none; color: var(--primary); font-weight: 500; display: inline-flex; align-items: center; gap: 4px; margin-bottom: 20px;">
+      &larr; Back to Events
+    </a>
+
+    <!-- Alert Banner Container -->
+    <div id="alert-container"></div>
+
+    <div id="loading-spinner" style="text-align: center; padding: 40px; color: var(--text-muted);">
+      <h3>Loading event details...</h3>
+    </div>
+
+    <!-- Event Detail Layout (hidden initially) -->
+    <div class="detail-container" id="detail-layout" style="display: none;">
+      <!-- Main event content -->
+      <div>
+        <img id="event-image" class="detail-img" src="" alt="Event Image" onerror="this.src='https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=800&auto=format&fit=crop&q=60'">
+        
+        <div class="detail-content">
+          <h1 id="event-title" class="detail-title">Event Title</h1>
+          
+          <div class="detail-meta">
+            <div class="detail-meta-item">
+              <h5>Date</h5>
+              <p id="event-date">Date Value</p>
+            </div>
+            <div class="detail-meta-item">
+              <h5>Time</h5>
+              <p id="event-time">Time Value</p>
+            </div>
+            <div class="detail-meta-item">
+              <h5>Venue</h5>
+              <p id="event-venue">Venue Value</p>
+            </div>
+            <div class="detail-meta-item">
+              <h5>Organizer</h5>
+              <p id="event-organizer">Organizer Value</p>
+            </div>
+          </div>
+
+          <h3 class="detail-desc-title">About the Event</h3>
+          <p id="event-desc" class="detail-description">Event Description goes here.</p>
+        </div>
+      </div>
+
+      <!-- Action Card / Sidebar -->
+      <div>
+        <div style="background-color: var(--surface); padding: 30px; border-radius: var(--radius-md); box-shadow: var(--shadow); border: 1px solid var(--border); position: sticky; top: 90px;">
+          <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 12px;">Interested in attending?</h3>
+          <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 24px;">Register now to book your seat. Registration is free for all current college students and staff.</p>
+          <a href="" id="register-btn" class="btn">Register for Event</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="main-container" style="min-height: auto; margin: 0 auto; padding: 0;">
+      <p>&copy; 2026 Campus Events Management Portal. Built as a College Mini Project.</p>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/event-detail.js"></script>
+</body>
+</html>

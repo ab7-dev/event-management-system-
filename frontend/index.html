@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Management Portal | Home</title>
+  <meta name="description" content="View and register for upcoming college hackathons, cultural fests, sports events, and guest lectures.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo" id="nav-logo">
+        <div class="logo-icon">🎓</div>
+        <span>CampusEvents</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active" id="nav-link-home">Home</a></li>
+        <li><a href="admin-login.html" id="nav-link-login">Admin Login</a></li>
+        <li><a href="admin-dashboard.html" class="nav-btn" id="nav-link-dashboard">Dashboard</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="main-container">
+    <div class="hero">
+      <h1 class="hero-title">Discover Exciting Campus Events</h1>
+      <p class="hero-subtitle">Stay updated with seminars, sports meets, cultural fests, and workshops happening around campus. Register now to secure your spot!</p>
+      
+      <!-- Search Bar -->
+      <div class="search-wrapper">
+        <input type="text" id="search-bar" class="search-input" placeholder="🔍 Search events by name, venue, or description...">
+      </div>
+    </div>
+
+    <!-- Upcoming Events Section -->
+    <section>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h2 style="font-size: 28px; font-weight: 700;">Upcoming Events</h2>
+        <span id="event-count" style="color: var(--text-muted); font-size: 14px; font-weight: 500;">Loading events...</span>
+      </div>
+
+      <!-- Alert Container -->
+      <div id="alert-container"></div>
+
+      <!-- Events Card Grid -->
+      <div class="events-grid" id="events-grid">
+        <!-- Rendered dynamically via JavaScript -->
+      </div>
+    </section>
+  </header>
+
+  <!-- Footer -->
+  <footer>
+    <div class="main-container" style="min-height: auto; margin: 0 auto; padding: 0;">
+      <p>&copy; 2026 Campus Events Management Portal. Built as a College Mini Project.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

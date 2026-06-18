@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login | CampusEvents</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo" id="nav-logo">
+        <div class="logo-icon">🎓</div>
+        <span>CampusEvents</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" id="nav-link-home">Home</a></li>
+        <li><a href="admin-login.html" class="active" id="nav-link-login">Admin Login</a></li>
+        <li><a href="admin-dashboard.html" class="nav-btn" id="nav-link-dashboard">Dashboard</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Login Form Card -->
+  <main class="main-container">
+    <div class="auth-card">
+      <h1 class="auth-title">Admin Login</h1>
+      <p class="auth-subtitle">Access the administrator panel to manage events</p>
+
+      <!-- Alert Message Container -->
+      <div id="alert-container"></div>
+
+      <form id="login-form">
+        <!-- Username input -->
+        <div class="form-group">
+          <label for="login-username" class="form-label">Username</label>
+          <input type="text" id="login-username" class="form-control" placeholder="Enter admin username" required autocomplete="username">
+        </div>
+
+        <!-- Password input -->
+        <div class="form-group">
+          <label for="login-password" class="form-label">Password</label>
+          <input type="password" id="login-password" class="form-control" placeholder="Enter password" required autocomplete="current-password">
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn" style="margin-top: 10px;" id="btn-login">Sign In</button>
+      </form>
+
+      <p style="text-align: center; margin-top: 20px; font-size: 13px; color: var(--text-muted);">
+        Default College Project Credentials:<br>
+        <strong>username:</strong> admin | <strong>password:</strong> admin123
+      </p>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="main-container" style="min-height: auto; margin: 0 auto; padding: 0;">
+      <p>&copy; 2026 Campus Events Management Portal. Built as a College Mini Project.</p>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/admin-login.js"></script>
+</body>
+</html>

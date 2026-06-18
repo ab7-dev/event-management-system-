@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | CampusEvents</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* Dashboard Specific Styles */
+    .tabs {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 30px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 12px;
+    }
+    
+    .tab-btn {
+      padding: 10px 20px;
+      background: none;
+      border: none;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+    }
+    
+    .tab-btn:hover {
+      color: var(--primary);
+      background-color: var(--primary-light);
+    }
+    
+    .tab-btn.active {
+      color: var(--surface);
+      background-color: var(--primary);
+    }
+    
+    .tab-content {
+      display: none;
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Table styles */
+    .table-container {
+      background-color: var(--surface);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      overflow-x: auto;
+      margin-bottom: 30px;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 15px;
+    }
+    
+    th, td {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    th {
+      background-color: #f1f5f9;
+      font-weight: 600;
+      color: var(--text);
+    }
+    
+    tr:last-child td {
+      border-bottom: none;
+    }
+    
+    tr:hover td {
+      background-color: #f8fafc;
+    }
+
+    /* Action buttons in table */
+    .action-btn-group {
+      display: flex;
+      gap: 8px;
+    }
+    
+    .action-btn {
+      padding: 6px 12px;
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+    
+    .action-btn-edit {
+      background-color: #f0fdf4;
+      color: #166534;
+    }
+    
+    .action-btn-edit:hover {
+      background-color: #dcfce7;
+    }
+    
+    .action-btn-delete {
+      background-color: #fef2f2;
+      color: #991b1b;
+    }
+    
+    .action-btn-delete:hover {
+      background-color: #fee2e2;
+    }
+
+    /* Modal dialog styling for Form popup */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed;
+      z-index: 200;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(15, 23, 42, 0.4);
+      backdrop-filter: blur(4px);
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .modal-content {
+      background-color: var(--surface);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+      width: 100%;
+      max-width: 600px;
+      padding: 30px;
+      max-height: 90vh;
+      overflow-y: auto;
+      border: 1px solid var(--border);
+    }
+    
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    
+    .modal-close {
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--text-muted);
+      border: none;
+      background: none;
+    }
+    
+    .modal-close:hover {
+      color: var(--text);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo" id="nav-logo">
+        <div class="logo-icon">🎓</div>
+        <span>CampusEvents</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" id="nav-link-home">Home</a></li>
+        <li><a href="admin-login.html" id="nav-link-login">Admin Login</a></li>
+        <li><a href="#" class="nav-btn" id="logout-btn">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Dashboard Container -->
+  <main class="main-container">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+      <div>
+        <h1 style="font-size: 32px; font-weight: 800;">Admin Dashboard</h1>
+        <p style="color: var(--text-muted);" id="welcome-message">Manage college events and review user registrations.</p>
+      </div>
+      <button class="btn" style="width: auto;" id="add-event-btn">+ Create Event</button>
+    </div>
+
+    <!-- Alert Banner -->
+    <div id="alert-container"></div>
+
+    <!-- Tab Switching -->
+    <div class="tabs">
+      <button class="tab-btn active" id="tab-events" onclick="switchTab('events')">Events</button>
+      <button class="tab-btn" id="tab-registrations" onclick="switchTab('registrations')">Registrations</button>
+    </div>
+
+    <!-- EVENTS TAB CONTENT -->
+    <section class="tab-content active" id="content-events">
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Event Title</th>
+              <th>Date</th>
+              <th>Venue</th>
+              <th>Organizer</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="events-table-body">
+            <!-- Populated via Javascript -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- REGISTRATIONS TAB CONTENT -->
+    <section class="tab-content" id="content-registrations">
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Attendee Name</th>
+              <th>Email Address</th>
+              <th>Phone Number</th>
+              <th>Registered Event</th>
+              <th>Registration Date</th>
+            </tr>
+          </thead>
+          <tbody id="registrations-table-body">
+            <!-- Populated via Javascript -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- ADD / EDIT EVENT MODAL DIALOG -->
+  <div class="modal" id="event-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modal-title" style="font-weight: 700;">Add New Event</h2>
+        <button class="modal-close" id="modal-close-btn">&times;</button>
+      </div>
+
+      <form id="event-form">
+        <!-- Hidden eventId for Editing -->
+        <input type="hidden" id="event-form-id">
+
+        <!-- Title -->
+        <div class="form-group">
+          <label for="event-form-title" class="form-label">Event Title</label>
+          <input type="text" id="event-form-title" class="form-control" required placeholder="e.g. Annual Sports Meet 2026">
+        </div>
+
+        <!-- Description -->
+        <div class="form-group">
+          <label for="event-form-desc" class="form-label">Description</label>
+          <textarea id="event-form-desc" class="form-control" rows="4" required placeholder="Provide event details, schedule, etc."></textarea>
+        </div>
+
+        <!-- Date & Time Grid -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div class="form-group">
+            <label for="event-form-date" class="form-label">Date</label>
+            <input type="date" id="event-form-date" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="event-form-time" class="form-label">Time (24h)</label>
+            <input type="time" id="event-form-time" class="form-control" required>
+          </div>
+        </div>
+
+        <!-- Venue & Organizer Grid -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div class="form-group">
+            <label for="event-form-venue" class="form-label">Venue</label>
+            <input type="text" id="event-form-venue" class="form-control" required placeholder="e.g. Main Seminar Hall">
+          </div>
+          <div class="form-group">
+            <label for="event-form-organizer" class="form-label">Organizer</label>
+            <input type="text" id="event-form-organizer" class="form-control" placeholder="e.g. Cultural Club">
+          </div>
+        </div>
+
+        <!-- Image URL -->
+        <div class="form-group">
+          <label for="event-form-image" class="form-label">Event Banner Image URL</label>
+          <input type="url" id="event-form-image" class="form-control" placeholder="e.g. https://images.unsplash.com/... (optional)">
+        </div>
+
+        <!-- Action Buttons -->
+        <div style="display: flex; gap: 12px; margin-top: 30px;">
+          <button type="button" class="btn btn-secondary" id="event-form-cancel-btn">Cancel</button>
+          <button type="submit" class="btn" id="event-form-submit-btn">Save Event</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="main-container" style="min-height: auto; margin: 0 auto; padding: 0;">
+      <p>&copy; 2026 Campus Events Management Portal. Built as a College Mini Project.</p>
+    </div>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/admin-dashboard.js"></script>
+</body>
+</html>
